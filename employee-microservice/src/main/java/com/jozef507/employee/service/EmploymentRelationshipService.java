@@ -27,7 +27,7 @@ public class EmploymentRelationshipService {
 
     public List<EmploymentRelationship> findEmploymentRelationships(){
         log.info("Inside findEmploymentRelationships method in EmploymentRelationshipService!");
-        return employmentRelationshipRepository.findAll();
+        return employmentRelationshipRepository.findAllEmploymentRelationships();
     }
 
     public EmploymentRelationship findEmploymentRelationshipById(Long employmentRelationshipId) {

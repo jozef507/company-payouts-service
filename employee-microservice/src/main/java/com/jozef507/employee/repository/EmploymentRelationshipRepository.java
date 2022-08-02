@@ -2,6 +2,7 @@ package com.jozef507.employee.repository;
 
 import com.jozef507.employee.entity.EmploymentRelationship;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,4 +12,7 @@ public interface EmploymentRelationshipRepository extends JpaRepository<Employme
     EmploymentRelationship findByComponentId(Long employmentRelationshipId);
 
     List<EmploymentRelationship> findAllByEmployeeEmployeeId(Long id);
+
+    @Query("SELECT er FROM EmploymentRelationship er")
+    List<EmploymentRelationship> findAllEmploymentRelationships();
 }

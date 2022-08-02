@@ -1,15 +1,18 @@
 package com.jozef507.employee.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="employeeId")
 public class Employee {
 
     @Id

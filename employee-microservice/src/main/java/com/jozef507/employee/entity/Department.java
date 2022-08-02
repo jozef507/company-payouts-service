@@ -1,8 +1,9 @@
 package com.jozef507.employee.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,21 +12,21 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
 @DiscriminatorValue("department")
-//@JsonTypeName("Department")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="componentId")
 public class Department extends Component {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long departmentId;*/
     private String name;
+
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "department_department_id")
+
+    @OneToMany(mappedBy="parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Component> components = new ArrayList<>();
-    @ManyToOne
-    private Component parent;
+
+
 
     public void calculateSalary(){
 
